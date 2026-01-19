@@ -1,6 +1,6 @@
 from .entities import RISMInstitution, RISMPerson, RISMSource
 from dataclasses import dataclass, field
-from typing import Generic, List, Type, TypeVar
+from typing import Generic, Sequence, Type, TypeVar
 
 from .base import RISMEntry
 
@@ -13,7 +13,7 @@ class RISMEntryCollection(Generic[T]):
     Base collection for homogeneous RISMEntry types.
     """
 
-    entries: List[T]
+    entries: Sequence[T]
     entry_type: Type[T] = field(init=False)
 
     def __post_init__(self):
@@ -40,10 +40,10 @@ class RISMEntryCollection(Generic[T]):
     def __getitem__(self, idx):
         return self.entries[idx]
 
-    def ids(self) -> List[str]:
+    def ids(self) -> Sequence[str]:
         return [e.id for e in self.entries]
 
-    def to_dicts(self) -> List[dict]:
+    def to_dicts(self) -> Sequence[dict]:
         return [e.to_dict() for e in self.entries]
 
 

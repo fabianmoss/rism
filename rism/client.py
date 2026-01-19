@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 from dataclasses import dataclass
 import requests
 
@@ -10,7 +10,7 @@ HEADERS = {"Accept": "application/ld-json"}
 class RISMSource:
     id: str
     title: str
-    composer: str = None
+    composer: Optional[str] = None
 
 
 class RISMClient:

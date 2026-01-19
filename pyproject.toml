@@ -7,3 +7,35 @@ requires-python = ">=3.12"
 dependencies = [
     "requests>=2.32.5",
 ]
+
+[dependency-groups]
+dev = [
+    "mypy>=1.19.1",
+    "types-requests>=2.32.4.20260107",
+    "pytest>=8.0.0",
+    "pytest-cov>=4.0.0",
+    "pytest-mock>=3.10.0",
+    "responses>=0.24.0",
+    "factory-boy>=3.3.0",
+    "hypothesis>=6.0.0",
+]
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "--cov=rism",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+    "--strict-markers",
+    "--strict-config",
+]
+markers = [
+    "unit: Unit tests (no external dependencies)",
+    "integration: Integration tests",
+    "slow: Tests that take significant time",
+    "api: Tests that make real API calls",
+]
